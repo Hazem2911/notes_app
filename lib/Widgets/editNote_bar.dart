@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/constants.dart';
 
 class EditForm extends StatelessWidget {
   const EditForm({
@@ -13,7 +14,8 @@ class EditForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: const TextStyle(color: Colors.white), // <-- Add this line
+      cursorColor: kPrimaryColor,
+      style: const TextStyle(color: Colors.white), 
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(
           vertical: vertical,
@@ -25,12 +27,12 @@ class EditForm extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: Colors.white, width: 1.5),
+          borderSide: const BorderSide(color: kPrimaryColor, width: 1.5),
         ),
         labelText: label,
-        labelStyle: const TextStyle(fontSize: 20, color: Color(0xff7addcb)),
+        labelStyle: const TextStyle(fontSize: 20, color: kPrimaryColor),
         hintText: hint,
-        hintStyle: const TextStyle(color: Colors.white),
+        hintStyle: const TextStyle(color: Colors.blueGrey),
       ),
     );
   }
