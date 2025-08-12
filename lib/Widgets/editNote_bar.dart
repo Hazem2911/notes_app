@@ -13,6 +13,7 @@ class EditForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: const TextStyle(color: Colors.white), // <-- Add this line
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(
           vertical: vertical,
@@ -28,8 +29,8 @@ class EditForm extends StatelessWidget {
         ),
         labelText: label,
         labelStyle: const TextStyle(fontSize: 20, color: Color(0xff7addcb)),
-
         hintText: hint,
+        hintStyle: const TextStyle(color: Colors.white),
       ),
     );
   }

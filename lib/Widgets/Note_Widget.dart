@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/services/showModal.dart';
 
+
 class NoteWidget extends StatelessWidget {
   const NoteWidget({super.key, required this.color});
   final Color color;
@@ -11,7 +12,7 @@ class NoteWidget extends StatelessWidget {
         showModal(context);
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
         height: 225,
         decoration: BoxDecoration(
           color: color,
@@ -25,7 +26,10 @@ class NoteWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Flutter tips', style: TextStyle(fontSize: 30)),
+                  Text(
+                    'Flutter tips',
+                    style: TextStyle(fontSize: 30, ),
+                  ),
                   SizedBox(height: 20),
                   Text(
                     'Build Your Career With \nHazem Ahmed',
