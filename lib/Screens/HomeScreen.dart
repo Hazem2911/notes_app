@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/Widgets/Clickable_Icon.dart';
 import 'package:notes_app/Widgets/noteslistView.dart';
+import 'package:notes_app/services/showModal.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -10,7 +11,9 @@ class Homescreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xff303030),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModal(context, 'Add Note', true);
+        },
         backgroundColor: Color(0xff57edd8),
         child: Icon(Icons.add, color: Colors.black),
       ),

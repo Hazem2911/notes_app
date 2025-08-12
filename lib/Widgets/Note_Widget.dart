@@ -9,7 +9,7 @@ class NoteWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showModal(context);
+        showModal(context, 'Edit Note', false);
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
