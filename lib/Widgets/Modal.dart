@@ -25,9 +25,7 @@ class _DraggableScrollableModalSheetState
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AddNoteCubit>(
-          create: (context) => AddNoteCubit(),
-        ),
+        BlocProvider<AddNoteCubit>(create: (context) => AddNoteCubit()),
       ],
       child: DraggableScrollableSheet(
         expand: false,
@@ -44,20 +42,36 @@ class _DraggableScrollableModalSheetState
               }
             },
             builder: (context, state) {
-              return Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xff303030),
-                  borderRadius: BorderRadius.only(
+              return AbsorbPointer(
+                absorbing: State is AddNoteLoadingState ? true : false,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),
-                ),
-                padding: const EdgeInsets.all(16),
-                  
-                child: AddNoteForm(
-                  text: widget.text,
-                  hasButton: widget.hasButton,
-                  scrollController: scrollController,
+                  child: ModalProgressHUD(
+                    inAsyncCall: State is AddNoteLoadingState,
+                    progressIndicator: const CircularProgressIndicator(
+                      strokeWidth: 3.0,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Color(0xff303030),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(16),
+                
+                      child: AddNoteForm(
+                        text: widget.text,
+                        hasButton: widget.hasButton,
+                        scrollController: scrollController,
+                      ),
+                    ),
+                  ),
                 ),
               );
             },
