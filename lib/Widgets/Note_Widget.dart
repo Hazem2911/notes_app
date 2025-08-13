@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/services/showModal.dart';
 
-
 class NoteWidget extends StatelessWidget {
-  const NoteWidget({super.key, required this.color});
+  const NoteWidget({super.key, required this.color, required this.note});
   final Color color;
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -21,19 +22,16 @@ class NoteWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Padding(
+            Padding(
               padding: const EdgeInsets.only(left: 20.0, top: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(note.title, style: const TextStyle(fontSize: 30)),
+                  const SizedBox(height: 20),
                   Text(
-                    'Flutter tips',
-                    style: TextStyle(fontSize: 30, ),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Build Your Career With \nHazem Ahmed',
-                    style: TextStyle(
+                    note.subTitle,
+                    style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 18,
                       color: Color(0xff966e2b),
@@ -50,11 +48,15 @@ class NoteWidget extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {},
-                    child: const Icon(Icons.delete, color: Colors.black, size: 38),
+                    child: const Icon(
+                      Icons.delete,
+                      color: Colors.black,
+                      size: 38,
+                    ),
                   ),
-                  const Text(
-                    'Aug 10,2025',
-                    style: TextStyle(
+                  Text(
+                    note.date.split(' ')[0],
+                    style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 17,
                       color: Color(0xff966e2b),
