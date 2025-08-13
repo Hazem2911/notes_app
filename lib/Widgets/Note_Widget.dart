@@ -12,7 +12,7 @@ class NoteWidget extends StatelessWidget {
         showModal(context, 'Edit Note', false);
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
         height: 225,
         decoration: BoxDecoration(
           color: color,
@@ -21,7 +21,7 @@ class NoteWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
+            const Padding(
               padding: const EdgeInsets.only(left: 20.0, top: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,9 +50,9 @@ class NoteWidget extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {},
-                    child: Icon(Icons.delete, color: Colors.black, size: 38),
+                    child: const Icon(Icons.delete, color: Colors.black, size: 38),
                   ),
-                  Text(
+                  const Text(
                     'Aug 10,2025',
                     style: TextStyle(
                       fontWeight: FontWeight.w400,

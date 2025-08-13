@@ -13,7 +13,7 @@ class CustomElevatedbutton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         minimumSize: const Size.fromHeight(50),
       ),
-      child: Text('Add', style: TextStyle(color: Colors.black, fontSize: 18)),
+      child: const Text('Add', style: TextStyle(color: Colors.black, fontSize: 18)),
     );
   }
 }

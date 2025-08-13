@@ -9,16 +9,16 @@ class Homescreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff303030),
+      backgroundColor: const Color(0xff303030),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModal(context, 'Add Note', true);
         },
-        backgroundColor: Color(0xff57edd8),
-        child: Icon(Icons.add, color: Colors.black),
+        backgroundColor: const Color(0xff57edd8),
+        child: const Icon(Icons.add, color: Colors.black),
       ),
       appBar: customAppBar(title: 'Notes'),
-      body: Expanded(child: NotesListView()),
+      body: const Expanded(child: NotesListView()),
     );
   }
 }

@@ -9,7 +9,7 @@ class Clickableicon extends StatelessWidget {
       onTap: () {},
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0xff3a3a3a),
+          color: const Color(0xff3a3a3a),
           borderRadius: BorderRadius.circular(15),
         ),
         width: 50,
