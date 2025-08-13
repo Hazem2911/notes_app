@@ -16,7 +16,7 @@ class NoteWidget extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
         height: 225,
         decoration: BoxDecoration(
-          color: color,
+          color: Color(note.color),
           borderRadius: BorderRadius.circular(15),
         ),
         child: Row(
@@ -47,7 +47,7 @@ class NoteWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: note.delete,
                     child: const Icon(
                       Icons.delete,
                       color: Colors.black,
