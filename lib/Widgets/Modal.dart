@@ -31,6 +31,7 @@ class _DraggableScrollableModalSheetState
         expand: false,
         initialChildSize: 0.6,
         maxChildSize: 0.8,
+        minChildSize: 0.6,
         builder: (context, scrollController) {
           return BlocConsumer<AddNoteCubit, AddNoteStates>(
             listener: (context, state) {
@@ -63,8 +64,12 @@ class _DraggableScrollableModalSheetState
                           topRight: Radius.circular(20),
                         ),
                       ),
-                      padding: const EdgeInsets.all(16),
-                
+                      padding: EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        top: 20,
+                        bottom: MediaQuery.of(context).viewInsets.bottom,
+                      ),
                       child: AddNoteForm(
                         text: widget.text,
                         hasButton: widget.hasButton,

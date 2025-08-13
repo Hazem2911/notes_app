@@ -10,4 +10,3 @@ void showModal(BuildContext context, final String text, final bool hasButton) {
     },
   );
 }
-
