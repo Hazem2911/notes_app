@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/Widgets/Clickable_Icon.dart';
 import 'package:notes_app/Widgets/CustomButton.dart';
 import 'package:notes_app/Widgets/editNote_bar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app/models/note_model.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
@@ -41,17 +44,24 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       widget.text,
                       style: const TextStyle(fontSize: 25, color: Colors.white),
                     ),
-                    if (!widget.hasButton) const Clickableicon(icon: Icons.check),
+                    if (!widget.hasButton)
+                      const Clickableicon(icon: Icons.check),
                   ],
                 ),
                 const SizedBox(height: 15),
-                const EditForm(
+                EditForm(
                   label: 'Title',
                   hint: 'Enter Note\'s Title',
                   vertical: 25,
+                  onSaved: (value) => title = value,
                 ),
                 const SizedBox(height: 25),
-                const EditForm(label: 'Content', hint: '', vertical: 75),
+                EditForm(
+                  label: 'Content',
+                  hint: '',
+                  vertical: 75,
+                  onSaved: (value) => subTitle = value,
+                ),
               ],
             ),
           ),
@@ -62,11 +72,16 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
+                    var note = NoteModel(
+                      Colors.amberAccent.value,
+                      title: title!,
+                      subTitle: subTitle!,
+                      date: DateTime.now().toString(),
+                    );
+                    BlocProvider.of<AddNoteCubit>(context).addNote(note);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
-                    setState(() {
-                      
-                    });
+                    setState(() {});
                   }
                 },
               ),

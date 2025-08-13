@@ -38,18 +38,18 @@ class _DraggableScrollableModalSheetState
             }
           },
           builder: (context, state) {
-            return Container(
-              decoration: const BoxDecoration(
-                color: Color(0xff303030),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
+            return ModalProgressHUD(
+              inAsyncCall: State is AddNoteLoadingState ? true : false,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xff303030),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
                 ),
-              ),
-              padding: const EdgeInsets.all(16),
-
-              child: ModalProgressHUD(
-                inAsyncCall: State is AddNoteLoadingState ? true : false,
+                padding: const EdgeInsets.all(16),
+                  
                 child: AddNoteForm(
                   text: widget.text,
                   hasButton: widget.hasButton,
