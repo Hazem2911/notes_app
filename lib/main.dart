@@ -20,12 +20,12 @@ class NotesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(fontFamily: 'Poppins'),
-      debugShowCheckedModeBanner: false,
-      home: BlocProvider(
-        create: (context) => NotesCubit()..showNotes(),
-        child: const Homescreen(),
+    return BlocProvider(
+      create: (context) => NotesCubit(),
+      child: MaterialApp(
+        theme: ThemeData(fontFamily: 'Poppins'),
+        debugShowCheckedModeBanner: false,
+        home: const Homescreen(),
       ),
     );
   }

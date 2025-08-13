@@ -13,7 +13,14 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
-  
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<NotesCubit>(context).showNotes();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

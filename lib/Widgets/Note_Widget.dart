@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/services/showModal.dart';
 
@@ -22,22 +24,33 @@ class NoteWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(note.title, style: const TextStyle(fontSize: 30)),
-                  const SizedBox(height: 20),
-                  Text(
-                    note.subTitle,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 18,
-                      color: Color(0xff966e2b),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      note.title,
+                      style: const TextStyle(fontSize: 30),
+                      maxLines: null,
+                      overflow: TextOverflow.visible,
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 20),
+                    Expanded(
+                      child: Text(
+                        note.subTitle,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 18,
+                          color: Color(0xff966e2b),
+                        ),
+                        maxLines: null,
+                        overflow: TextOverflow.visible,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -47,7 +60,10 @@ class NoteWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    onTap: note.delete,
+                    onTap: () {
+                      note.delete();
+                      BlocProvider.of<NotesCubit>(context).showNotes();
+                    },
                     child: const Icon(
                       Icons.delete,
                       color: Colors.black,
