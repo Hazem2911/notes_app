@@ -33,7 +33,6 @@ class _DraggableScrollableModalSheetState
             if (state is AddNoteFailureState) {
               print('Failed ${state.errMessage}');
             }
-
             if (state is AddNoteSuccessState) {
               Navigator.of(context).pop();
             }
