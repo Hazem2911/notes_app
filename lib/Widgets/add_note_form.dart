@@ -5,6 +5,7 @@ import 'package:notes_app/Widgets/CustomButton.dart';
 import 'package:notes_app/Widgets/editNote_bar.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_states.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 
 class AddNoteForm extends StatefulWidget {
@@ -13,19 +14,32 @@ class AddNoteForm extends StatefulWidget {
     required this.text,
     required this.hasButton,
     required this.scrollController,
+    this.note,
   });
 
   final String text;
   final bool hasButton;
   final ScrollController scrollController;
+  final NoteModel? note;
   @override
   State<AddNoteForm> createState() => _AddNoteFormState();
 }
 
 class _AddNoteFormState extends State<AddNoteForm> {
+  late TextEditingController titleController;
+  late TextEditingController subtitleController;
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title, subTitle;
+  @override
+  void initState() {
+    super.initState();
+    titleController = TextEditingController(text: widget.note?.title ?? '');
+    subtitleController = TextEditingController(
+      text: widget.note?.subTitle ?? '',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -45,11 +59,20 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       style: const TextStyle(fontSize: 25, color: Colors.white),
                     ),
                     if (!widget.hasButton)
-                      const Clickableicon(icon: Icons.check),
+                      Clickableicon(
+                        icon: Icons.check,
+                        onTap: () {
+                          EditNote(context);
+                        },
+                      ),
                   ],
                 ),
                 const SizedBox(height: 15),
                 EditForm(
+                  controller: titleController,
+                  onChanged: (value) {
+                    title = value;
+                  },
                   label: 'Title',
                   hint: 'Enter Note\'s Title',
                   vertical: 25,
@@ -57,6 +80,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 ),
                 const SizedBox(height: 25),
                 EditForm(
+                  onChanged: (value) {
+                    subTitle = value;
+                  },
+                  controller: subtitleController,
                   label: 'Content',
                   hint: '',
                   vertical: 75,
@@ -93,5 +120,18 @@ class _AddNoteFormState extends State<AddNoteForm> {
         ],
       ),
     );
+  }
+
+  void EditNote(BuildContext context) {
+    formKey.currentState!.save();
+    widget.note!.title = title ?? widget.note!.title;
+    widget.note!.subTitle =
+        subTitle ?? widget.note!.subTitle;
+    widget.note!.date = DateTime.now().toString();
+    widget.note!.save();
+    
+    BlocProvider.of<NotesCubit>(context).showNotes();
+    
+    Navigator.of(context).pop();
   }
 }

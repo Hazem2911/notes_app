@@ -5,16 +5,18 @@ import 'package:notes_app/Widgets/add_note_form.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_states.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
+import 'package:notes_app/models/note_model.dart';
 
 class DraggableScrollableModalSheet extends StatefulWidget {
   const DraggableScrollableModalSheet({
     super.key,
     required this.text,
     required this.hasButton,
+    this.note,
   });
   final String text;
   final bool hasButton;
-
+  final NoteModel? note;
   @override
   State<DraggableScrollableModalSheet> createState() =>
       _DraggableScrollableModalSheetState();
@@ -76,6 +78,7 @@ class _DraggableScrollableModalSheetState
                         text: widget.text,
                         hasButton: widget.hasButton,
                         scrollController: scrollController,
+                        note: widget.note, 
                       ),
                     ),
                   ),
