@@ -23,24 +23,28 @@ class _DraggableScrollableModalSheetState
     extends State<DraggableScrollableModalSheet> {
   @override
   Widget build(BuildContext context) {
-    return DraggableScrollableSheet(
-      expand: false,
-      initialChildSize: 0.6,
-      maxChildSize: 0.8,
-      builder: (context, scrollController) {
-        return BlocConsumer<AddNoteCubit, AddNoteStates>(
-          listener: (context, state) {
-            if (state is AddNoteFailureState) {
-              print('Failed ${state.errMessage}');
-            }
-            if (state is AddNoteSuccessState) {
-              Navigator.of(context).pop();
-            }
-          },
-          builder: (context, state) {
-            return ModalProgressHUD(
-              inAsyncCall: State is AddNoteLoadingState ? true : false,
-              child: Container(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AddNoteCubit>(
+          create: (context) => AddNoteCubit(),
+        ),
+      ],
+      child: DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.6,
+        maxChildSize: 0.8,
+        builder: (context, scrollController) {
+          return BlocConsumer<AddNoteCubit, AddNoteStates>(
+            listener: (context, state) {
+              if (state is AddNoteFailureState) {
+                print('Failed ${state.errMessage}');
+              }
+              if (state is AddNoteSuccessState) {
+                Navigator.of(context).pop();
+              }
+            },
+            builder: (context, state) {
+              return Container(
                 decoration: const BoxDecoration(
                   color: Color(0xff303030),
                   borderRadius: BorderRadius.only(
@@ -55,11 +59,11 @@ class _DraggableScrollableModalSheetState
                   hasButton: widget.hasButton,
                   scrollController: scrollController,
                 ),
-              ),
-            );
-          },
-        );
-      },
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
