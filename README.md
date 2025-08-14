@@ -9,7 +9,7 @@ This project was developed as part of my Flutter learning journey, focusing on c
 
 ## 📽️ Demo Video
 
-🎥 **Demo Video**: [Watch here]([https://drive.google.com/drive/folders/1VHearQ3TPyalyKc9Imm9fSgFfm7BeR9Z?usp=sharing](https://drive.google.com/file/d/1AzrUP8VleHx_qI9DGaLIb8ihnerhUI7S/view?usp=sharing))
+▶️ [Watch the Demo](https://drive.google.com/drive/folders/1VHearQ3TPyalyKc9Imm9fSgFfm7BeR9Z?usp=sharing))
 
 > *(Opens in Google Drive)*
 
