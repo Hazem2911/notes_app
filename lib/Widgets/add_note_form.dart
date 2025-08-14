@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/Widgets/Clickable_Icon.dart';
 import 'package:notes_app/Widgets/CustomButton.dart';
+import 'package:notes_app/Widgets/colors_listView.dart';
 import 'package:notes_app/Widgets/editNote_bar.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_states.dart';
@@ -62,7 +63,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       Clickableicon(
                         icon: Icons.check,
                         onTap: () {
-                          EditNote(context);
+                          editNote(context);
                         },
                       ),
                   ],
@@ -92,46 +93,52 @@ class _AddNoteFormState extends State<AddNoteForm> {
               ],
             ),
           ),
+
           if (widget.hasButton)
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: BlocBuilder<AddNoteCubit, AddNoteStates>(
-                builder: (context, state) {
-                  return CustomElevatedbutton(
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        formKey.currentState!.save();
-                        var note = NoteModel(
-                          Colors.amberAccent.value,
-                          title: title!,
-                          subTitle: subTitle!,
-                          date: DateTime.now().toString(),
-                        );
-                        BlocProvider.of<AddNoteCubit>(context).addNote(note);
-                      } else {
-                        autovalidateMode = AutovalidateMode.always;
-                        setState(() {});
-                      }
-                    },
-                  );
-                },
-              ),
+            const SizedBox(height: 60, child: ColorsListView()),
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: BlocBuilder<AddNoteCubit, AddNoteStates>(
+              builder: (context, state) {
+                return CustomElevatedbutton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      addNote(context);
+                    } else {
+                      autovalidateMode = AutovalidateMode.always;
+                      setState(() {});
+                    }
+                  },
+                );
+              },
             ),
+          ),
         ],
       ),
     );
   }
 
-  void EditNote(BuildContext context) {
+  void addNote(BuildContext context) {
+    formKey.currentState!.save();
+    var note = NoteModel(
+      // ignore: deprecated_member_use
+      Colors.amberAccent.value,
+      title: title!,
+      subTitle: subTitle!,
+      date: DateTime.now().toString(),
+    );
+    BlocProvider.of<AddNoteCubit>(context).addNote(note);
+  }
+
+  void editNote(BuildContext context) {
     formKey.currentState!.save();
     widget.note!.title = title ?? widget.note!.title;
-    widget.note!.subTitle =
-        subTitle ?? widget.note!.subTitle;
+    widget.note!.subTitle = subTitle ?? widget.note!.subTitle;
     widget.note!.date = DateTime.now().toString();
     widget.note!.save();
-    
+
     BlocProvider.of<NotesCubit>(context).showNotes();
-    
+
     Navigator.of(context).pop();
   }
 }
