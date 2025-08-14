@@ -52,6 +52,10 @@ This project was developed as part of my Flutter learning journey, focusing on c
 
 ---
 
+<p align="center"> <img src="assets/screenshots/Notes View.png" alt="Home Screen" width="30%" /> <img src="assets/screenshots/Add Note.png" alt="Add Note Screen" width="30%" /> <img src="assets/screenshots/EditNote.png" alt="Edit Note Screen" width="30%" /> </p>
+
+---
+
 🧰 Tech Stack & Dependencies
   - Flutter & Dart
   - BLoC – State management
