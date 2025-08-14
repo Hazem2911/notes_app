@@ -61,13 +61,13 @@ This project was developed as part of my Flutter learning journey, focusing on c
 ---
 
 ## 📂 Folder Structure
-lib/
-├── cubits/       # State management (add_note_cubit, notes_cubit)
-├── models/       # Data models (note_model)
-├── screens/      # UI screens (HomeScreen)
-├── widgets/      # Reusable UI components
-├── services/     # Utility services (EditNote, showModal)
-└── main.dart     # App entry point
+📂 lib/
+├── 📁 cubits/        # State management (add_note_cubit, notes_cubit)
+├── 📁 models/        # Data models (note_model)
+├── 📁 screens/       # UI screens (HomeScreen, AddNoteScreen, EditNoteScreen)
+├── 📁 widgets/       # Reusable UI components
+├── 📁 services/      # Utility services (EditNote, showModal)
+└── 📄 main.dart      # App entry point
 
 ---
 
