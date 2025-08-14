@@ -32,9 +32,9 @@ class _DraggableScrollableModalSheetState
       ],
       child: DraggableScrollableSheet(
         expand: false,
-        initialChildSize: 0.6,
+        initialChildSize: 0.7,
         maxChildSize: 0.8,
-        minChildSize: 0.6,
+        minChildSize: 0.5,
         builder: (context, scrollController) {
           return BlocConsumer<AddNoteCubit, AddNoteStates>(
             listener: (context, state) {
